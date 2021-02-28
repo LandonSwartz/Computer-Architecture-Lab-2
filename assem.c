@@ -232,13 +232,13 @@ uint32_t gen_hex(char* inst){
 		else if(strcmp(op, "addi") ==0)
 		{
 			
-			rvalue = rvalue | (0b001000 << 26);
+			rvalue = rvalue | (0b001000 << 26); //opcode
 		
-			temp =p1hex << 16;
+			temp =p1hex << 16; //rs
 			
 			rvalue = rvalue | temp;
 
-			temp = p2hex << 21;
+			temp = p2hex << 21; //rt
 		
 			rvalue = rvalue | temp;
 	
@@ -246,7 +246,7 @@ uint32_t gen_hex(char* inst){
 		
 			rvalue = rvalue | temp;
 			
-			//printf("rvalue of addi is = %x\n", rvalue);
+			printf("rvalue of addi is = %x\n", rvalue);
 		
 		}
 		else if(strcmp(op,"add") ==0)
@@ -749,8 +749,8 @@ uint32_t gen_hex(char* inst){
 		
 	}
 	
-	printf("rvalue = %x\n", rvalue);
-		return rvalue;
+	//printf("rvalue = %x\n", rvalue);
+	return rvalue;
 }
 
 
