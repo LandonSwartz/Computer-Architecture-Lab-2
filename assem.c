@@ -21,7 +21,6 @@ void main(int argc, char *argv[]) {
 		
 	}
 	
-	
 	/* Open program file. */
 	fp = fopen(argv[1], "r"); 
 		
@@ -73,7 +72,7 @@ void main(int argc, char *argv[]) {
 	{
 		for(int q=0; q<i; q++)
 		{
-			fprintf(fp2,"%X\n", out[q]);
+			fprintf(fp2,"%08X\n", out[q]); //08 prefix to always make 8 char hex number (in case of special instructions with functions and what not)
 
 		}
 		printf("ayo output file created\n");
@@ -250,25 +249,25 @@ uint32_t gen_hex(char* inst){
 		}
 		else if(strcmp(op,"add") ==0)
 		{
-			//printf("\nRvalue1: %x\n", rvalue);
+			printf("\nRvalue1: %x\n", rvalue);
 			rvalue = rvalue | (0b000000 << 26);
 			temp = p2hex <<21;
-			//printf("\nRvalue2: %x\n", rvalue);
+			printf("\nRvalue2: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
-			//printf("p3hex is %x", p3hex);
+			printf("p3hex is %x", p3hex);
 			temp = p3hex <<16;
 			
-			//printf("\nRvalue3: %x\n", rvalue);
+			printf("\nRvalue3: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
-			//printf("\nRvalue3.5: %x\n", rvalue);
+			printf("\nRvalue3.5: %x\n", rvalue);
 			temp = p1hex <<11;
-			//printf("\nRvalue4: %x\n", rvalue);
+			printf("\nRvalue4: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
 			rvalue = rvalue | 0b100000;
-			//	printf("\nRvalue5: %x\n", rvalue);
+			printf("\nRvalue5: %x\n", rvalue);
 	
 				
 		}
@@ -742,11 +741,13 @@ uint32_t gen_hex(char* inst){
 		}
 		else
 		{
-	
+			printf("No instruction found...\n");
 				//didn't find an instruction for it
 		}
 		
 	}
+	
+	printf("rvalue = %x\n", rvalue);
 		return rvalue;
 }
 
