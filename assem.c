@@ -245,29 +245,31 @@ uint32_t gen_hex(char* inst){
 			temp = p3hex; 
 		
 			rvalue = rvalue | temp;
+			
+			//printf("rvalue of addi is = %x\n", rvalue);
 		
 		}
 		else if(strcmp(op,"add") ==0)
 		{
-			printf("\nRvalue1: %x\n", rvalue);
+			//printf("\nRvalue1: %x\n", rvalue);
 			rvalue = rvalue | (0b000000 << 26);
 			temp = p2hex <<21;
-			printf("\nRvalue2: %x\n", rvalue);
+			//printf("\nRvalue2: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
-			printf("p3hex is %x", p3hex);
+			//printf("p3hex is %x", p3hex);
 			temp = p3hex <<16;
 			
-			printf("\nRvalue3: %x\n", rvalue);
+			//printf("\nRvalue3: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
-			printf("\nRvalue3.5: %x\n", rvalue);
+			//printf("\nRvalue3.5: %x\n", rvalue);
 			temp = p1hex <<11;
-			printf("\nRvalue4: %x\n", rvalue);
+			//printf("\nRvalue4: %x\n", rvalue);
 
 			rvalue = rvalue | temp;
 			rvalue = rvalue | 0b100000;
-			printf("\nRvalue5: %x\n", rvalue);
+			//printf("\nRvalue5: %x\n", rvalue);
 	
 				
 		}

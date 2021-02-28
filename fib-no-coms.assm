@@ -1,13 +1,14 @@
 add $t1, $0, $0
-beq $t0, 10, 0x00400040
+addi $t5, $t5, 0x0000000A 
+beq $t0, $t5, 0x00400040
 jal 0x0040001c
-addi $t0, $t0, 1
+addi $t0, $t0, 0x00000001
 j 0x00400008
-addi $v0, $0, 10
+addi $v0, $0, 0x00000010
 syscall
 add $t1, $0, $0
 add $t2, $sp, $0
-addi $t3, $0, 1
+addi $t3, $0, 0x00000001
 addi $sp, $sp, -4
 sw $t0, 0($sp)
 beq $sp, $t2, 0x00400068
@@ -15,10 +16,10 @@ lw $t4, 0($sp)
 addi $sp, $sp, 4	
 slt $at $t3, $t4
 beq $at, $0, 0x004000060
-sub $t4, $t4, 1
+sub $t4, $t4, 0x00000001
 addi $sp, $sp, -4
 sw $t4, 0($sp)	
-sub $t4, $t4, 1
+sub $t4, $t4, 0x0000001
 addi $sp, $sp, -4
 sw $t4, 0($sp)		
 j 0x00400030		

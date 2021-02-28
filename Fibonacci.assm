@@ -47,14 +47,15 @@ fibonacci:
 		
 		
 My Version with comments:
-add $t1, $0, $0 #initializing i to zero, move t0,$0
-beq $t0, 10, 0x00400040 #looping from 0 to 10
+add $t0, $0, $0 #initializing i to zero, move t0,$0
+addi $t5, $t5, 0x0000000A #initializing 
+beq $t0, $t5, 0x00400040 #looping from 0 to 10 by comparing with T$1 (which should be 10)
 jal 0x0040001c #jumping to fibonacci function
 addi $t0, $t0, 1
 j 0x00400008
 addi $v0, $0, 10 #load interger
 syscall #exiting program
-add $t1, $0, $0 #fibonacci sequence
+add $t1, $0, $0 #fibonacci sequence function
 add $t2, $sp, $0
 addi $t3, $0, 1
 addi $sp, $sp, -4
