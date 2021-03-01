@@ -91,7 +91,7 @@ uint32_t gen_hex(char* inst){
 	char p3[100] = {0};
 	int i = 0;
 	int j = 0;
-	
+
 	uint32_t rvalue = 0x00000000;
 
 
@@ -189,7 +189,7 @@ uint32_t gen_hex(char* inst){
 		}
 	}
 
-	
+
 	p1hex = getr(p1);
 	p2hex = getr(p2);
 	p3hex = getr(p3);
@@ -521,7 +521,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;		
 		}
 		else if(strcmp(op, "lb") ==0)
@@ -534,7 +534,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "lh") ==0)
@@ -547,7 +547,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "lui") ==0)
@@ -571,7 +571,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "sb") ==0)
@@ -584,7 +584,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "sh") ==0)
@@ -597,7 +597,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "mfhi") ==0)
