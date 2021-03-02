@@ -1,77 +1,13 @@
-main:
-	#loop from $t0 = 0 until 10
-	move $t0, $0
-	loop: beq $t0, 10, exit
-		jal fibonacci
-	
-	addi $t0, $t0, 1
-	j loop
-
-exit:
-li $v0, 10
+addi $t0, $0, 0x0
+addi $t1, $0, 0x1
+addi $t2, $0, 0x0
+addi $t3, $0, 0xA
+add $t2, $t0, $t1
+slt $a1, $t2, 0x00400028
+bne $a1, $zero, 0x00400028
+add $t0, $0, $t1
+add $t1, $0, $t2
+add $t2, $t0, $t1
+j 0x00400018
+add $t4, $0, $t2
 syscall
-
-fibonacci:
-	move $t1, $0
-	move $t2, $sp
-	li $t3, 1
-		addi $sp, $sp, -4 # push intial $t0 on stack
-	sw $t0, 0($sp)
-
-	recursive:
-		beq $sp, $t2, fib_exit 		#if stack is empty, exit
-	
-		lw $t4, 0($sp)
-		addi $sp, $sp, 4
-	
-		bleu $t4, $t3, early_ret
-	
-			sub $t4, $t4, 1		#push $t4 - 1 on stack
-			addi $sp, $sp, -4
-			sw $t4, 0($sp)
-		
-			sub $t4, $t4, 1		#push $t4 - 2 on stack
-			addi $sp, $sp, -4
-			sw $t4, 0($sp)
-		
-			j recrusive
-		
-	early_ret:
-		
-		add $t1, $t1, $t4
-		j recursive
-		
-	fib_exit:
-		jr $31
-		
-		
-		
-My Version with comments:
-add $t0, $0, $0 #initializing i to zero, move t0,$0
-addi $t5, $t5, 0x0000000A #initializing 
-beq $t0, $t5, 0x00400040 #looping from 0 to 10 by comparing with T$1 (which should be 10)
-jal 0x0040001c #jumping to fibonacci function
-addi $t0, $t0, 1
-j 0x00400008
-addi $v0, $0, 10 #load interger
-syscall #exiting program
-add $t1, $0, $0 #fibonacci sequence function
-add $t2, $sp, $0
-addi $t3, $0, 1
-addi $sp, $sp, -4
-sw $t0, 0($sp)
-beq $sp, $t2, 0x00400068
-lw $t4, 0($sp)
-addi $sp, $sp, 4	
-slt $at $t3, $t4
-beq $at, $0, 0x004000060
-sub $t4, $t4, 1
-addi $sp, $sp, -4
-sw $t4, 0($sp)	
-sub $t4, $t4, 1
-addi $sp, $sp, -4
-sw $t4, 0($sp)		
-j 0x00400030		
-add $t1, $t1, $t4
-j 0x00400030
-jr $31

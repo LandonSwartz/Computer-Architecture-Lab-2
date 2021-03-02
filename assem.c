@@ -91,7 +91,7 @@ uint32_t gen_hex(char* inst){
 	char p3[100] = {0};
 	int i = 0;
 	int j = 0;
-	
+
 	uint32_t rvalue = 0x00000000;
 
 
@@ -99,6 +99,8 @@ uint32_t gen_hex(char* inst){
 	uint32_t p2hex;
 	uint32_t p3hex;
 	uint32_t temp = 0;
+	
+	printf("instruction = %s\n", inst);
 
 	
 
@@ -189,7 +191,7 @@ uint32_t gen_hex(char* inst){
 		}
 	}
 
-	
+
 	p1hex = getr(p1);
 	p2hex = getr(p2);
 	p3hex = getr(p3);
@@ -521,7 +523,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;		
 		}
 		else if(strcmp(op, "lb") ==0)
@@ -534,7 +536,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "lh") ==0)
@@ -547,7 +549,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "lui") ==0)
@@ -571,7 +573,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "sb") ==0)
@@ -584,7 +586,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "sh") ==0)
@@ -597,7 +599,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex;
 			rvalue = rvalue | temp;
 			
-			temp = p2hex<<21;
+			temp = p3hex<<21;
 			rvalue = rvalue | temp;
 		}
 		else if(strcmp(op, "mfhi") ==0)
@@ -651,6 +653,21 @@ uint32_t gen_hex(char* inst){
 			temp = p3hex;
 			rvalue = rvalue | temp;
 		}
+		else if(strcmp(op, "bgt") ==0)
+		{
+			rvalue = rvalue | (0b000111 << 26);
+		
+			temp = p1hex <<21;
+			rvalue = rvalue | temp;
+
+			temp = p2hex <<16;
+			rvalue = rvalue | temp;
+		
+			//printf("p3 is: %x", p3hex);
+
+			temp = p3hex;
+			rvalue = rvalue | temp;
+		}
 		else if(strcmp(op, "bne") ==0)
 		{
 			rvalue = rvalue | (0b000101 << 26);
@@ -661,7 +678,7 @@ uint32_t gen_hex(char* inst){
 			temp = p2hex <<16;
 			rvalue = rvalue | temp;
 		
-			printf("p3 is: %x", p3hex);
+			//printf("p3 is: %x", p3hex);
 
 			temp = p3hex;
 			rvalue = rvalue | temp;
@@ -743,7 +760,7 @@ uint32_t gen_hex(char* inst){
 		}
 		else
 		{
-			printf("No instruction found...\n");
+			printf("No instruction found for %s...\n", inst);
 				//didn't find an instruction for it
 		}
 		
